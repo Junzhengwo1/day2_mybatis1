@@ -1,6 +1,7 @@
 package com.kou.test;
 
 import com.kou.dao.IUserDao;
+import com.kou.domain.QueryVo;
 import com.kou.domain.User;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -98,5 +99,19 @@ public class MybatisCRODTest {
     public void testFindTotal() {
         int total = userDao.findTotal();
         System.out.println(total);
+    }
+
+
+    @Test
+    public void testFindByVO() {
+
+        QueryVo vo=new QueryVo();
+        User user=new User();
+        user.setUsername("%王%");
+        vo.setUser(user);
+        List<User> users = userDao.findUserByVo(vo);
+        for (User u : users) {
+            System.out.println(u);
+        }
     }
 }

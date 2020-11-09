@@ -36,4 +36,9 @@
         select count(id)  from user;
     </select>
 
+    <select id="findUserByVo" parameterType="com.kou.domain.QueryVo" resultType="com.kou.domain.User">
+        select *from user where username like #{user.username};
+    </select>
+
+
 </mapper>

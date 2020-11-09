@@ -1,8 +1,10 @@
 package com.kou.dao;
 
+import com.kou.domain.QueryVo;
 import com.kou.domain.User;
 import org.apache.ibatis.annotations.Select;
 
+import javax.management.Query;
 import java.util.List;
 
 /**
@@ -48,11 +50,18 @@ public interface IUserDao {
      */
     List<User> findByUsername(String name);
 
-
     /**
      * 查询总用户数
      * @return
      */
     int findTotal();
+
+    /**
+     * 根据查询条件查询用户， 综合条件查询
+     * @param vo
+     * @return
+     */
+    List<User> findUserByVo(QueryVo vo);
+
 
 }
