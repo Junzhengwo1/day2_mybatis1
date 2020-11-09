@@ -36,7 +36,6 @@ public class MybatisCRODTest {
         sqlSession=factory.openSession();
         //4.使用SqlSession创建Dao接口的代理对象
         userDao = sqlSession.getMapper(IUserDao.class);
-
     }
 
     @After
@@ -53,22 +52,18 @@ public class MybatisCRODTest {
         for (User user : users) {
             System.out.println(user);
         }
-
-
-
     }
     @Test
     public void testSaveUser() throws Exception{
         User user=new User();
-        user.setUsername("mybatis Username");
+        user.setUsername("旺旺");
         user.setAddress("扬州");
         user.setSex("男");
         user.setBirthday(new Date());
-
+        System.out.println("之前。。。"+user.getId());
         //5.使用代理对象执行方法
         userDao.saveUser(user);
-
-
+        System.out.println("之后。。。。"+user.getId());
     }
     @Test
     public void testUpdateUser() throws Exception{
@@ -78,23 +73,18 @@ public class MybatisCRODTest {
         user.setAddress("北京");
         user.setSex("女");
         user.setBirthday(new Date());
-
         userDao.updateUser(user);
-
-
     }
     @Test
     public void testDeleteUser() throws Exception{
 
         userDao.deleteUser(53);
-
     }
     @Test
     public void testFindOne() throws Exception{
 
         User user = userDao.findById(41);
         System.out.println(user);
-
     }
     @Test
     public void testFindByUsername() {
@@ -103,13 +93,10 @@ public class MybatisCRODTest {
         for (User user : users) {
             System.out.println(user);
         }
-
     }
     @Test
     public void testFindTotal() {
-
         int total = userDao.findTotal();
         System.out.println(total);
-
     }
 }
